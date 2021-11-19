@@ -2,25 +2,29 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"time"
 )
 
 var n int
 
+func esperar() {
+	duracion := time.Duration(rand.Intn(251))
+	time.Sleep(time.Millisecond * duracion)
+}
+
 func p(k int) {
-	var temp int
 	for i := 0; i < k; i++ {
-		temp = n
-		time.Sleep(time.Second)
+		temp := n
+		esperar()
 		n = temp + 1
 	}
 }
 
 func q(k int) {
-	var temp int
 	for i := 0; i < k; i++ {
-		temp = n
-		time.Sleep(time.Second)
+		temp := n
+		esperar()
 		n = temp - 1
 	}
 }
