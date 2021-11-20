@@ -1,0 +1,13 @@
+> spin file -> Simulación
+
+verify:
+> spin -a file -> Generador de archivos
+ * pan.c : Archivo C verificador
+> gcc -o pan pan.c : Compilamos el archivo C, para crear el ejecutable pan
+> ./pan
+ * Al ejecutarlo nos lanza el reporte
+ * En caso de haber un error se genera un archivo trail
+
+ Si se dá un error, revisamos el archivo trail con el comando:
+ * file pml
+ > spin -t file
