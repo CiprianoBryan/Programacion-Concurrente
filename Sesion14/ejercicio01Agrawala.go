@@ -125,5 +125,27 @@ func manejadorConexiones(con net.Conn) {
 		go func() {
 			chMyInfo <- myInfo
 		}()
+
+		procesarSC()
+	case "INICIAR":
+		fmt.Print("chIniciar: ")
+		<-chIniciar
+		procesarSC()
+	}
+}
+
+func procesarSC() {
+	fmt.Println("Inicia las tareas de la SC")
+	myInfo := <-chMyInfo
+
+	fmt.Println("Procesando la SC")
+	if myInfo.ProxAddr == "" {
+		fmt.Println("Soy el último nodo, SC Procesada!")
+	} else {
+		// notifica al nodo que le continua
+		fmt.Println("trabaja concluido, SC finalizada!")
+		// enviat la notificacion al próximo
+		info := Info{Tipo: "INICIAR"}
+		enviar(myInfo.ProxAddr, info)
 	}
 }
